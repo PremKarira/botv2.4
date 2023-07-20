@@ -1,7 +1,7 @@
 require('dotenv').config();
 // const keepAlive = require('./server');
 const mongo = require('./mongo');
-const scSchema = require('./schemas/sc');
+const scSchema = require('../schemas/sc');
 const { Client, GatewayIntentBits, EmbedBuilder, PermissionBitField, Permissions } = require('discord.js');
 const { MessageActionRow, MessageButton, ActionRowBuilder } = require('discord.js');
 const { ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js');
@@ -20,8 +20,9 @@ async function start() {
   try {
     const mongoose = await mongo();
     console.log('Connected to MongoDB');
-    const mySecret = process.env['TOKEN']
-    client.login(mySecret);
+    // const mySecret = process.env['TOKEN']
+    // client.login(mySecret);
+    client.login(process.env.TOKEN);
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
   }
